@@ -1,23 +1,19 @@
+from functools import cache
+
 with open('input.txt', 'r') as f:
     space = [list(line.strip()) for line in f.readlines()]
     print(space)
 
 beams = [(space[0].index('S'), 0)]
+memo = {}
 
-current_step = 0
-while True:
-    current_step += 1
-    new_beams = []
-    for beam in beams:
-        if space[beam[1]+1][beam[0]] == '^':
-            new_beams.append((beam[0]+1, beam[1]+1))
-            new_beams.append((beam[0]-1, beam[1]+1))
-        else:
-            new_beams.append((beam[0], beam[1]+1))
-    beams = new_beams
-    print(current_step)
-    print(len(beams))
-    if current_step == len(space)-1:
-        break
+@cache
+def count_beam(beam) -> int:
+    if beam[1] >= len(space)-1:
+        return 1
+    if space[beam[1]][beam[0]] != '.':
+        return count_beam((beam[0]+1, beam[1])) + count_beam((beam[0]-1, beam[1]))
+    else:
+        return count_beam((beam[0], beam[1]+1))
 
-print(len(beams))
+print(count_beam((space[0].index('S'), 0)))
