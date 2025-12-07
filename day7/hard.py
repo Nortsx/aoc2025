@@ -4,9 +4,6 @@ with open('input.txt', 'r') as f:
     space = [list(line.strip()) for line in f.readlines()]
     print(space)
 
-beams = [(space[0].index('S'), 0)]
-memo = {}
-
 @cache
 def count_beam(beam) -> int:
     if beam[1] >= len(space)-1:
