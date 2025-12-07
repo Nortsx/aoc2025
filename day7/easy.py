@@ -17,8 +17,6 @@ while True:
         else:
             new_beams.add((beam[0], beam[1]+1))
     beams = new_beams
-    # print(current_step)
-    # print(len(beams))
     if current_step == len(space)-1:
         break
 
