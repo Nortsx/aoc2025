@@ -29,3 +29,4 @@ for i in range(len(corner_coords) - 1):
         if in_grid(corner_coords[i], corner_coords[j], poly):
             max_area = max(max_area, area(corner_coords[i], corner_coords[j]))
 
+print(max_area)
