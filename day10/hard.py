@@ -28,13 +28,10 @@ def solve_joltage_milp(targets, buttons):
     b_eq = np.array(targets)
     constraints = [LinearConstraint(A_eq, lb=b_eq, ub=b_eq)]
 
-    # Bounds: each button can be pressed 0 or more times
     bounds = Bounds(lb=0, ub=np.inf)
 
-    # Specify that all variables are integers
-    integrality = np.ones(n_buttons)  # 1 means integer variable
+    integrality = np.ones(n_buttons)
 
-    # Solve the MILP
     result = milp(c=c, constraints=constraints, bounds=bounds, integrality=integrality)
 
     if result.success:
