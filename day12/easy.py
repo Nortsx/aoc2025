@@ -25,7 +25,7 @@ with open('input.txt', 'r') as f:
         spaces.append((space_size, space_present_list))
 
 unfit = 0
-for idx, space in enumerate(spaces):
+for space in spaces:
     size = int(space[0].split("x")[0])*int(space[0].split("x")[1])
     presents = space[1]
     potential_size = 0
@@ -33,6 +33,5 @@ for idx, space in enumerate(spaces):
         potential_size += presents[i] * get_shape_size(figures[i])
     if potential_size > size:
         unfit += 1
-        print("NOT FIT ", idx)
 
 print(len(spaces) - unfit)
